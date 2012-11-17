@@ -30,4 +30,16 @@
         android:layout_height="35dp"
         android:text="@string/hello_world" />
 
+    <TextView
+        android:id="@+id/TextView04"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:text="@string/hello_world" />
+
+    <TextView
+        android:id="@+id/TextView05"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:text="@string/hello_world" />
+
 </LinearLayout>

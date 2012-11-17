@@ -15,10 +15,14 @@ import org.xml.sax.XMLReader;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
 import android.view.Menu;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.TextView;
 
 public class ProvaParser extends Activity {
+	static String s[]= new String[6];
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -26,14 +30,14 @@ public class ProvaParser extends Activity {
 		setContentView(R.layout.activity_prova_parser);
 		
 		// Selezioniamo il feed rss
-		String url= "http://www.nasa.gov/rss/image_of_the_day.rss";
-		String url1= "http://www.corrieredellosport.it/rss/Calcio-3.xml";
+		String url= "http://www.corrieredellosport.it/rss/Calcio-3.xml";
+		
 		
 		//Facciamo partire il parser
 		try {
 			SAXParserFactory factory=SAXParserFactory.newInstance();
     		SAXParser parser=factory.newSAXParser();
-			InputStream in = new URL(url1).openStream(); //connessione http al browser
+			InputStream in = new URL(url).openStream(); //connessione http al browser
 			RssHandler handler=new RssHandler();
 			XMLReader reader = parser.getXMLReader();
 			reader.setContentHandler(handler);
@@ -45,11 +49,24 @@ public class ProvaParser extends Activity {
 			TextView t1 = (TextView) findViewById(R.id.TextView01);
 			TextView t2 = (TextView) findViewById(R.id.TextView02);
 			TextView t3 = (TextView) findViewById(R.id.TextView03);
+			TextView t4 = (TextView) findViewById(R.id.TextView04);
+			TextView t5 = (TextView) findViewById(R.id.TextView05);
 			
-			final TextView t[] = {t0,t1,t2,t3};	
-			for(int i=0; i<4; i++){
+			final TextView t[] = {t0,t1,t2,t3,t4,t5};	
+			for(int i=0; i<6; i++){
 				t[i].setText(handler.title[i]);
+				s[i]=handler.title[i];
 			}
+			
+			t0.setOnClickListener(new OnClickListener() {
+				
+				public void onClick(View v) {
+					// TODO Auto-generated method stub
+					Intent intent = new Intent(ProvaParser.this,SecondActivity.class);
+					startActivity(intent);
+					
+				}
+			});
 		}catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -63,6 +80,7 @@ public class ProvaParser extends Activity {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 		
 	}
 

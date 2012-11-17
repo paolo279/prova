@@ -15,7 +15,7 @@ import android.graphics.BitmapFactory;
 
 public class RssHandler extends DefaultHandler{
 	boolean inTitle = false;
-	String title[]= new String[4];
+	String title[]= new String[6];
 	int i=0;
 	boolean inItem = false;
 	boolean inEnclosure = false;
@@ -112,7 +112,7 @@ public class RssHandler extends DefaultHandler{
 		super.characters(ch, start, length);
 		String s = new String (ch, start, length);
 		System.out.println("testo:"+s);
-		if (inTitle & inItem & i<4){
+		if (inTitle & inItem & i<6){
 			
 				title[i]=s;
 				i++;
